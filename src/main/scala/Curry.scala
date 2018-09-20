@@ -1,3 +1,4 @@
+
 /**
   * Created by ARUMUHX on 8/15/2018.
   */
@@ -39,6 +40,59 @@ object Curry {
 
     //    curried function: partially applying entire parameter group to reduce arity
 
+
+//    Another example to curry.
+
+ def curriedFn[A](operator: (A,A)=>A) :A=>(A=>A)={
+
+   def curries(a:A)={(b:A)=>operator(a,b)}
+   curries
+ }
+
+    def addFn(a:Int,b:Int):Int={a+b}
+    def mulFn(a:Int,b:Int):Int=(a*b)
+
+    val pp=curriedFn(addFn)
+    val mm=curriedFn(mulFn)
+    println(pp(1)(2))
+    println(mm(1)(2))
+
+
+//Real world example
+
+    //    RealWorld scenario
+    //    In this case a premium is calculated as total on each card divided by total number of cards based on the amount.
+
+    case class CreditCard(name:String,total:Double)
+    val cc1=new CreditCard("Hari",100)
+    val cc2=new CreditCard("Madhu",1000)
+
+    object CreditCard{
+      def getPremium(totalCards:Int)(credit:CreditCard):Double={
+        if (credit.total>100)           (credit.total*.1)/totalCards
+        else credit.total*1/totalCards
+      }
+
+
+    }
+
+    val allcards:List[CreditCard]=List(cc1,cc2)
+    val premium=CreditCard.getPremium(allcards.length)_
+//    With the _ we mentioned it is a curried function
+    val total=allcards.map(premium).sum
+
+    println(total)
+
+
+
   }
 
 }
+
+
+
+
+
+
+
+

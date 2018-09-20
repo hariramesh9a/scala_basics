@@ -1,10 +1,26 @@
+#Scala basics - theory
+## Scala case class and class
+
+stateful classes introduce a notion of identity that does not exist in case classes.
+
+for e.g. case Money(denomination:Int,currency:String)
+
+val m1=new Money(1,2)
+val m2= new Money(1,2)
+
+here m1 and m2 are equal. Since case classes are just a special case of classes, whose purpose is to aggregate several values into a single value.
+
+
+where as if it done to class it will not be equal. Becuase it bring notion of identity.
+
+
 scala var/ref all are instance of classes- unified type system .
 
 java val and reference type must exit.
 
 unified type system . Any, AnyVal, AnyRef (ref types)
 
-# None, Nothing, Null, Nil
+## None, Nothing, Null, Nil
 
 
 None is a value not type
